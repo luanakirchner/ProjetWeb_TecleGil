@@ -1,0 +1,44 @@
+body{
+    background-color: black;
+    height: 100vh;
+}
+header{
+    height: 100%;
+}
+
+footer{
+    background-color: #A6A6A6;
+}
+
+.PageContenu{
+    background-color: black;
+}
+.MarginTop{
+    height: 180px;
+}
+
+.NousServicesTexte{
+    margin-top: 7%;
+    margin-left: 30px;
+    margin-bottom: 7%;
+    color: white;
+}
+.TitlePage{
+    margin-bottom: 50px;
+    height: 300px;
+
+}
+.NousServiceImage{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+.NousServicesTitle{
+  margin: auto;
+    background-color: #CCB012;
+    color: black;
+    font-size: 34px;
+    border-radius: 20px 40px;
+}
