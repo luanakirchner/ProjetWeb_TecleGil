@@ -19,9 +19,8 @@ footer{
 }
 
 .NousServicesTexte{
-   margin: 7%;
-    color: white;
-    background-color: #404040;
+    margin: 7%;
+    color: #D9D9D9;
 }
 .TitlePage{
     margin-bottom: 50px;
@@ -44,7 +43,13 @@ footer{
 }
 
 .FormulaireContact{
-    width: 50%;
-    margin-left: 25%;
-
+    width: 70%;
+    margin: auto;
+}
+.QuiSommesNousImg{
+    background-color: #737373;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border-radius: 100px;
 }

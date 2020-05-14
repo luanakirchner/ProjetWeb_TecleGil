@@ -4,11 +4,14 @@
  * Version 1.0
  */
 function home(){
-    require 'View/home.php';
+    require 'View/Home.php';
 }
 function NousServices(){
     require 'View/NousServices.php';
 }
 function Contact(){
     require 'View/Contact.php';
+}
+function QuiSommesNous(){
+    require 'View/QuiSommesNous.php';
 }

@@ -12,7 +12,7 @@ ob_start();
     </div>
     <div class="container" style="margin-bottom: 50px">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <form style="">
                     <div class="form-group">
                         <h3 class="text-center" style="color: white">Formulaire de contact</h3>
@@ -21,21 +21,23 @@ ob_start();
                     <div class="form-group"><input class="form-control form-control-md FormulaireContact" type="text" required="" placeholder="Prénom*"></div>
                     <div class="form-group"><input class="form-control form-control-md FormulaireContact" type="email" required=""  placeholder="Email*"></div>
                     <div class="form-group"><textarea class="form-control form-control-md FormulaireContact" required="" style="min-height: 200px;" placeholder="Message*"></textarea></div>
-                    <div class="form-group"><button class="btn btn-dark btn-lg FormulaireContact"  type="submit">Envoyer</button></div>
+                    <div class="form-group" style="display: flex"><button class="btn btn-dark btn-lg FormulaireContact"  type="submit">Envoyer</button></div>
                 </form>
             </div>
-            <div class="col-md-6 text-center" style="color: white">
+            <div class="col-md-4 text-center" style="color: white">
                 <h3 class="text-center" >Nous Trouver</h3>
-                <p class="text-muted" style="margin-top: 15px">Av Fagundes Varela, 914 Loja 06<br>
+                <p class="text-muted" style="margin-top: 25px">Av Fagundes Varela, 914 Loja 06<br>
                     Jardim Atlântico - Olinda PE<br>
-                    CEP: 53140-080<br><br>
-                    teclegil@teclegil.com.br<br>
-                    tecle.gil@hotmail.com<br><br>
-                    +55 81 30110378<br>
-                    99688-4905<br>
+                    CEP: 53140-080
                 </p>
-                <h3 class="text-center" >Ouverture</h3>
-                <p class="text-muted" style="margin-top: 15px"><span style="color: white"> Lundi à vendredi:</span><br>
+                <p class="text-muted"> teclegil@teclegil.com.br<br>
+                    tecle.gil@hotmail.com
+                </p>
+                <p class="text-muted">+55 81 30110378<br>
+                    99688-4905
+                </p>
+                <h3 class="text-center" style="margin-top: 35px" >Ouverture</h3>
+                <p class="text-muted" style="margin-top: 25px"><span style="color: white"> Lundi à vendredi:</span><br>
                     8hr à 17hr<br>
                     <span style="color: white"> Samedi:</span><br>
                     8hr à 12hr
