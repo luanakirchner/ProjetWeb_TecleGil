@@ -29,7 +29,7 @@
                 <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="index.php?action=home">Accueil</a></li>
                 <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="#">Qui sommes nous</a></li>
                 <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="index.php?action=NousServices">Nous services</a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="#">Contact</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="index.php?action=Contact">Contact</a></li>
                 <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="#">Login</a></li>
             </ul>
         </div>
@@ -39,7 +39,7 @@
 <footer>
     <div class="container">
         <div class="row">
-            <div class="col-md-4"><span class="copyright">Luana Kirchner Bannwart 2020</span></div>
+            <div class="col-md-4">Luana Kirchner Bannwart<br> 2020<br><a href="">@LuanaKirchner</a></span></div>
             <div class="col-md-4">
                 <ul class="list-inline social-buttons">
                     <li class="list-inline-item"><a href="#" ><i class="fa fa-facebook"></i></a></li>
@@ -48,10 +48,7 @@
                 </ul>
             </div>
             <div class="col-md-4">
-                <ul class="list-inline quicklinks">
-                    <li class="list-inline-item">Jardim Atlântico - Olinda PE</li>
-                    <li class="list-inline-item">+55 81 30110378</li>
-                </ul>
+                <p>Jardim Atlântico - Olinda PE<br>+55 81 30110378</p>
             </div>
         </div>
     </div>

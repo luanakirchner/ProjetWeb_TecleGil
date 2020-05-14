@@ -9,3 +9,6 @@ function home(){
 function NousServices(){
     require 'View/NousServices.php';
 }
+function Contact(){
+    require 'View/Contact.php';
+}

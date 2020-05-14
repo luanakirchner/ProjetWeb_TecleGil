@@ -15,6 +15,9 @@ if(isset($_GET['action'])){
         case 'NousServices':
             NousServices();
             break;
+        case 'Contact':
+             Contact();
+             break;
         default:
             home();
     }
