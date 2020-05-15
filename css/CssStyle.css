@@ -53,3 +53,57 @@ footer{
     background-repeat: no-repeat;
     border-radius: 100px;
 }
+
+/*--------------------Page Client ------------------------- */
+.PageClient{
+    width: 90%;
+    height: auto;
+    background-color: #262626;
+    padding: 40px 40px 0 40px;
+    border-radius: 4px;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: #fff;
+    box-shadow: 3px 3px 4px rgba(0,0,0,0.2);
+    overflow: auto;
+
+}
+.ClientMateriel{
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+.ClientStatus{
+    margin-bottom: 10px;
+}
+.ClientDark{
+    height: 1000px;
+    background-size: cover;
+    position: relative;
+}
+.ClientMiseAJour{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+    text-align: center;
+
+}
+/*------------Menu adm -------------------------------------*/
+.MenuAdm{
+    margin-left: 15px;
+    margin-right: 15px;
+}
+.AdmCmd{
+    background-color: #FFD400;
+    margin-bottom: 20px;
+    display: flex;
+}
+/*---------------Media screnn --------------------------------*/
+@media screen and (max-width: 767px) {
+
+    .mediaMargin{
+        margin-bottom: 15px;
+    }
+
+}

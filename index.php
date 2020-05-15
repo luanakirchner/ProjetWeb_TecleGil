@@ -21,6 +21,15 @@ if(isset($_GET['action'])){
         case 'QuiSommesNous':
             QuiSommesNous();
             break;
+        case 'Login':
+            Login($_POST);
+            break;
+        case 'Client':
+            Client();
+            break;
+        case 'AdmStatusEnCours':
+            AdmStatusEnCours();
+            break;
         default:
             home();
     }

@@ -22,10 +22,10 @@ ob_start();
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.
                 </p>
             </div>
-            <div class="col-md-3"><span class="fa-stack fa-4x QuiSommesNousImg"></span></div>
-            <div class="col-md-3"><span class="fa-stack fa-4x QuiSommesNousImg"></span></div>
-            <div class="col-md-3"><span class="fa-stack fa-4x QuiSommesNousImg"></span></div>
-            <div class="col-md-3"><span class="fa-stack fa-4x QuiSommesNousImg"></span></div>
+            <div class="col-md-3 mediaMargin"><span class="fa-stack fa-4x QuiSommesNousImg"></span></div>
+            <div class="col-md-3 mediaMargin"><span class="fa-stack fa-4x QuiSommesNousImg"></span></div>
+            <div class="col-md-3 mediaMargin"><span class="fa-stack fa-4x QuiSommesNousImg"></span></div>
+            <div class="col-md-3 mediaMargin"><span class="fa-stack fa-4x QuiSommesNousImg"></span></div>
 
         </div>
     </div>

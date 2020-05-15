@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="css/Login-Form-Dark.css">
     <link rel="stylesheet" href="css/CssStyle.css">
 </head>
 
@@ -30,7 +32,7 @@
                 <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="index.php?action=QuiSommesNous">Qui sommes nous</a></li>
                 <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="index.php?action=NousServices">Nous services</a></li>
                 <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="index.php?action=Contact">Contact</a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="#">Login</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="index.php?action=Login">Login</a></li>
             </ul>
         </div>
     </div>
