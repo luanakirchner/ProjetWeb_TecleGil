@@ -3,6 +3,8 @@
  * 05/2020
  * Version 1.0
  */
+require 'model/model.php';
+
 function home(){
     require 'View/Home.php';
 }
@@ -18,8 +20,36 @@ function QuiSommesNous(){
 function Login($login){
 
     if(!empty($login["user"])&& !empty($login["password"])){
-        $_GET['action'] = "Client";
-        require 'View/Client.php';
+
+        $name = $login["user"];
+        $password = $login["password"];
+
+        if($name == "adminLuana"){
+            $admin = true;
+            $logincorrect =  IsLoginCorrectAdmin($name,$password);
+
+        }
+       if($name !="adminLuana"){
+           $logincorrect =  IsLoginCorrectCustomers($name,$password);
+           $admin = false;
+        }
+
+       if($logincorrect){
+           CreateSession($name,$admin);
+           $_GET['loginError'] = false;
+           if($admin){
+               $_GET['action']="AdmStatusEnCours";
+               require 'View/AdmStatusEnCours.php';
+           }
+           else{
+               $_GET['action'] = "Client";
+               require 'View/Client.php';
+           }
+       } else{
+           $_GET['loginError'] = true;
+           $_GET['action'] = "Login";
+           require 'View/Login.php';
+       }
     }
     else{
         $_GET['action'] = "Login";
@@ -32,4 +62,10 @@ function Client(){
 }
 function AdmStatusEnCours(){
     require 'View/AdmStatusEnCours.php';
+}
+function NouvelleIntervention(){
+    require 'View/Intervention.php';
+}
+function AjouterClient(){
+    require 'View/AjouterClient.php';
 }

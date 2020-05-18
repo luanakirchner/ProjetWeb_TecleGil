@@ -5,7 +5,7 @@
  */
 ob_start();
 ?>
-<div class="PageContenu">
+<div class="PageContenu" style="min-height: 90%;">
     <div class="MarginTop"></div>
     <div class="col-lg-12 text-center" style="margin-bottom: 70px;">
         <h1 class="text-uppercase section-heading" style="color: white">Qui Sommes Nous</h1>

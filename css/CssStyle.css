@@ -98,6 +98,26 @@ footer{
     background-color: #FFD400;
     margin-bottom: 20px;
     display: flex;
+    justify-content: center;
+}
+.AdmCmd:hover{
+    background-color: #A6A6A6;
+}
+.texta{
+    color: black;
+    text-decoration: none;
+}
+
+/*Intervention*/
+.formIntervention{
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
 }
 /*---------------Media screnn --------------------------------*/
 @media screen and (max-width: 767px) {

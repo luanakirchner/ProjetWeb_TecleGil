@@ -30,6 +30,12 @@ if(isset($_GET['action'])){
         case 'AdmStatusEnCours':
             AdmStatusEnCours();
             break;
+        case 'NouvelleIntervention':
+            NouvelleIntervention();
+            break;
+        case 'AjouterClient':
+            AjouterClient();
+            break;
         default:
             home();
     }
