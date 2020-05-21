@@ -119,6 +119,28 @@ footer{
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 
 }
+.formulaireAjouteClient{
+    color: white;
+    height: auto;
+    padding-right: 95px;
+    padding-left: 30px
+}
+.ligneCenter{
+    display: flex;
+    align-items: center;
+}
+.ligneLabel{
+    width: 30%;
+    display: flex;
+    justify-content: flex-end;
+}
+.ligneInput{
+    width: 70%;
+}
+.ligneCenter label{
+    margin-right: 15px;
+    margin-top: 15px;
+}
 /*---------------Media screnn --------------------------------*/
 @media screen and (max-width: 767px) {
 
@@ -126,4 +148,17 @@ footer{
         margin-bottom: 15px;
     }
 
+}
+
+@media screen and (max-width: 767px) {
+
+    .ligneLabel{
+
+    }
+    .ligneInput{
+        width: 50%;
+    }
+    .formulaireAjouteClient{
+        padding-right: 15px;
+    }
 }

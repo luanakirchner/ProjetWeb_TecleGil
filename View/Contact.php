@@ -5,6 +5,14 @@
  */
 ob_start();
 ?>
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script>
+    function onSubmit(token) {
+        document.getElementById("i-recaptcha").submit();
+    }
+</script>
+
 <div class="PageContenu">
     <div class="MarginTop"></div>
     <div class="col-lg-12 text-center" style="margin-bottom: 70px;">
@@ -13,15 +21,16 @@ ob_start();
     <div class="container" style="margin-bottom: 50px">
         <div class="row">
             <div class="col-md-8">
-                <form style="">
+                <form style="" id="i-recaptcha" action='index.php?action=Contact' method="post">
                     <div class="form-group">
                         <h3 class="text-center" style="color: white">Formulaire de contact</h3>
                     </div>
-                    <div class="form-group"><input class="form-control form-control-md FormulaireContact" type="text"  required="" placeholder="Name*"></div>
-                    <div class="form-group"><input class="form-control form-control-md FormulaireContact" type="text" required="" placeholder="Prénom*"></div>
-                    <div class="form-group"><input class="form-control form-control-md FormulaireContact" type="email" required=""  placeholder="Email*"></div>
-                    <div class="form-group"><textarea class="form-control form-control-md FormulaireContact" required="" style="min-height: 200px;" placeholder="Message*"></textarea></div>
-                    <div class="form-group" style="display: flex"><button class="btn btn-dark btn-lg FormulaireContact"  type="submit">Envoyer</button></div>
+                    <div class="form-group"><input class="form-control form-control-md FormulaireContact" type="text" name="nom" required="" placeholder="Nom*"></div>
+                    <div class="form-group"><input class="form-control form-control-md FormulaireContact" type="text" name="prenom" required="" placeholder="Prénom*"></div>
+                    <div class="form-group"><input class="form-control form-control-md FormulaireContact" type="email" name="email" required=""  placeholder="Email*"></div>
+                    <div class="form-group"><textarea class="form-control form-control-md FormulaireContact" required="" name="message" style="min-height: 200px;" placeholder="Message*"></textarea></div>
+                    <div class="form-group" style="display: flex"><button class="btn btn-dark btn-lg FormulaireContact g-recaptcha" data-sitekey="6Lc0gvkUAAAAADYJYMhJ_Jw3nyt4Ecs73uf7KMM1" data-callback="onSubmit">Envoyer</button></div>
+                    <div>><?= @$_GET["EmailMessage"] ?></div>
                 </form>
             </div>
             <div class="col-md-4 text-center" style="color: white">

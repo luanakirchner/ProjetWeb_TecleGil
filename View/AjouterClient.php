@@ -5,7 +5,7 @@
  */
 ob_start();
 ?>
-<div class="PageContenu" style="min-height: 80%">
+<div class="PageContenu" style="min-height: 87%">
     <div class="MarginTop"></div>
     <div class="col-lg-12 text-center" style="margin-bottom: 70px;">
         <h3 class="text-uppercase section-heading" style="color: white">Ajouter un client</h3>
@@ -17,40 +17,66 @@ ob_start();
             <div class="btn AdmCmd" type="button">Tous les client</div>
             <div class="btn AdmCmd" type="button">Ajouter un client</div>
         </div>
-        <div class="col-md-10" style="color: white; height: auto" >
-            <form style="margin-left: 10px">
-                <div class="form-group">
-                    <label for="firstname">Prénom:</label>
-                    <input class="formIntervention" type="text" name="firstname" style="width: 40%" >
-                    <label for="lastname">Nom:</label>
-                    <input class="formIntervention" type="text" name="lastname" style="width: 40%" >
+        <div class="col-md-10 formulaireAjouteClient" >
+            <form style="margin-left: 10px" action='index.php?action=AjouterClient' method="post">
+                <div class="form-group row">
+                    <div class="col-md-6 ligneCenter ">
+                        <div class="ligneLabel"><label  for="firstname" style="margin-right: 15px">Prénom*:</label></div>
+                        <div class="ligneInput"> <input id="firstname" class="formIntervention" type="text" required="" name="firstname"style="width: 100%" onchange="Login()"></div>
+                    </div>
+                    <div class="col-md-6 ligneCenter" >
+                        <div class="ligneLabel"><label for="lastname">Nom*:</label></div>
+                        <div class="ligneInput"> <input id="lastname" class="formIntervention" type="text" required=""  name="lastname" style="width: 100%" onchange="Login()"></div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="telephone">telephone:</label>
-                    <input class="formIntervention" type="text" name="telephone" style="width: 40%" >
+                <div class="form-group row">
+                    <div class="col-md-6 ligneCenter">
+                        <div class="ligneLabel"> <label for="telephone">telephone*:</label></div>
+                        <div class="ligneInput"> <input class="formIntervention" type="text" required=""  name="telephone" style="width: 100%" > </div>
+                    </div>
+                    <div class="col-md-6 ligneCenter">
+                        <div class="ligneLabel"><label for="telephone2">telephone2:</label></div>
+                        <div class="ligneInput"> <input class="formIntervention" type="text" name="telephone2" style="width: 100%" ></div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="city">Ville</label>
-                    <input class="formIntervention" type="text" name="city" style="width: 40%" >
-                    <label for="npa">Npa</label>
-                    <input class="formIntervention" type="text" name="npa" style="width: 20%" >
+                <div class="form-group row">
+                    <div class="col-md-6 ligneCenter">
+                        <div class="ligneLabel"><label for="city">Ville*</label></div>
+                        <div class="ligneInput"><input class="formIntervention" required="" type="text" name="city" style="width: 100%" > </div>
+                    </div>
+                    <div class="col-md-6 ligneCenter">
+                        <div class="ligneLabel"><label for="npa">Npa</label></div>
+                        <div class="ligneInput"><input class="formIntervention" type="text" name="npa" style="width: 50%" ></div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="street">Rue</label>
-                    <input class="formIntervention" type="text" name="street" style="width: 40%" >
+                <div class="form-group row">
+                    <div class="col-md-6 ligneCenter">
+                        <div class="ligneLabel"><label for="street">Rue</label></div>
+                        <div class="ligneInput"><input class="formIntervention" type="text" name="street" style="width: 100%" > </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input class="formIntervention" type="text" name="email" style="width: 80%" >
+                <div class="form-group row">
+                    <div class="col-md-6 ligneCenter">
+                        <div class="ligneLabel"><label for="email">Email</label></div>
+                        <div class="ligneInput"> <input class="formIntervention" type="text" name="email" style="width: 100%" > </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="login">Login</label>
-                    <input class="formIntervention" type="text" name="login" style="width: 40%" >
-                    <label for="password">Mot de passe</label>
-                    <input class="formIntervention" type="text" name="password" style="width: 40%" >
+                <div class="form-group row">
+                    <div class="col-md-6 ligneCenter">
+                        <div class="ligneLabel"><label for="login">Login</label></div>
+                        <div class="ligneInput"><input  id="loginName" class="formIntervention" type="text" name="login" style="width: 100%" > </div>
+                    </div>
+                    <div class="col-md-3 ligneCenter">
+                        <div class="ligneLabel"><label for="">Mot de passe</label></div>
+                        <div class="ligneInput"> <input id="loginPassword" class="formIntervention" type="password" name="password" style="width: 100%" ></div>
+                    </div>
+                    <div class="col-md-3 ligneCenter">
+                        <img style="margin-right: 20px" src="img/vision.png" onclick="ShowPassword()">
+                        <div class="btn AdmCmd" style="margin-bottom: 0px">Envoyer le login</div>
+                    </div>
                 </div>
                 <div class="form-group" style="display: block">
-                    <button class="btn btn-block AdmCmd" type="submit" >Valider</button>
+                    <button class="btn btn-block AdmCmd" style="margin-bottom: 0px" type="submit" >Valider</button>
                 </div>
 
             </form>

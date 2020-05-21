@@ -16,7 +16,7 @@ if(isset($_GET['action'])){
             NousServices();
             break;
         case 'Contact':
-             Contact();
+             Contact($_POST);
              break;
         case 'QuiSommesNous':
             QuiSommesNous();
@@ -34,7 +34,7 @@ if(isset($_GET['action'])){
             NouvelleIntervention();
             break;
         case 'AjouterClient':
-            AjouterClient();
+            AjouterClient($_POST);
             break;
         default:
             home();

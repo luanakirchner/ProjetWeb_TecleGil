@@ -62,5 +62,33 @@
 <script src="js/agency.js"></script>
 <script src="js/bs-init.js"></script>
 
+<script>
+    function Login() {
+        var firstname= document.getElementById("firstname").value;
+        var lastname = document.getElementById("lastname").value;
+
+
+        if(firstname.indexOf(" ") > 0 || firstname.indexOf("-") > 0){
+            firstname = firstname.substring(firstname.indexOf(" "),0);
+        }
+        if(lastname.indexOf(" ") > 0 || lastname.indexOf("-") > 0){
+            lastname = lastname.substring(lastname.indexOf(" "),0);
+        }
+
+        if(firstname != "" && lastname !=""){
+            document.getElementById("loginName").value = firstname + lastname;
+            document.getElementById("loginPassword").value = firstname;
+        }
+    }
+    function ShowPassword(){
+        var x = document.getElementById("loginPassword");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+</script>
+
 </body>
 </html>
