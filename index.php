@@ -31,7 +31,7 @@ if(isset($_GET['action'])){
             AdmStatusEnCours();
             break;
         case 'NouvelleIntervention':
-            NouvelleIntervention();
+            NouvelleIntervention($_POST);
             break;
         case 'AjouterClient':
             AjouterClient($_POST);

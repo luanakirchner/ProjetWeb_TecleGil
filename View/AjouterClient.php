@@ -13,9 +13,9 @@ ob_start();
     <div class="row MenuAdm" style="height: auto%">
         <div class="col-md-2" style="border-right: yellow 1px solid;">
             <div class="btn AdmCmd" type="button" >En attend</div>
-            <div class="btn AdmCmd" type="button">Ajouter une nouvelle intervention</div>
+            <div class="btn AdmCmd" type="button"><a class="texta" href="index.php?action=NouvelleIntervention">Ajouter une nouvelle intervention</a></div>
             <div class="btn AdmCmd" type="button">Tous les client</div>
-            <div class="btn AdmCmd" type="button">Ajouter un client</div>
+            <div class="btn AdmCmd" type="button"><a class="texta" href="index.php?action=AjouterClient">Ajouter un client</a></div>
         </div>
         <div class="col-md-10 formulaireAjouteClient" >
             <form style="margin-left: 10px" action='index.php?action=AjouterClient' method="post">
@@ -67,7 +67,7 @@ ob_start();
                         <div class="ligneInput"><input  id="loginName" class="formIntervention" type="text" name="login" style="width: 100%" > </div>
                     </div>
                     <div class="col-md-3 ligneCenter">
-                        <div class="ligneLabel"><label for="">Mot de passe</label></div>
+                        <div class="ligneLabel"><label for="">Mot d e passe</label></div>
                         <div class="ligneInput"> <input id="loginPassword" class="formIntervention" type="password" name="password" style="width: 100%" ></div>
                     </div>
                     <div class="col-md-3 ligneCenter">
@@ -80,6 +80,7 @@ ob_start();
                 </div>
 
             </form>
+            <?=@$_GET["MessageConfirm"]?>
         </div>
     </div>
 

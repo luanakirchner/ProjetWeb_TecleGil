@@ -122,15 +122,15 @@ footer{
 .formulaireAjouteClient{
     color: white;
     height: auto;
-    padding-right: 95px;
-    padding-left: 30px
+    padding-right: 50px;
+    padding-left: 50px
 }
 .ligneCenter{
     display: flex;
     align-items: center;
 }
 .ligneLabel{
-    width: 30%;
+    width: 20%;
     display: flex;
     justify-content: flex-end;
 }
@@ -142,6 +142,15 @@ footer{
     margin-top: 15px;
 }
 /*---------------Media screnn --------------------------------*/
+@media screen and (max-width: 1027px) {
+
+    .formulaireAjouteClient{
+        padding-right: 15px;
+        padding-left: 70px;
+    }
+
+}
+
 @media screen and (max-width: 767px) {
 
     .mediaMargin{

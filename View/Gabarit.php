@@ -63,6 +63,23 @@
 <script src="js/bs-init.js"></script>
 
 <script>
+
+    //Verifier si le client existe
+    function VerifiClient() {
+
+        //Recuperer le data-value
+        var value = $('#selected').val();
+        var idClient=$('#browsers [value="' + value + '"]').data('value');
+
+        //Si le id n'est pas un numero, le client n'existe pas
+        if(isNaN(idClient)){
+            document.getElementById('selected').value="";
+            document.getElementById('idClient').value="";
+        }
+        else {
+            document.getElementById('idClient').value=idClient;
+        }
+    }
     function Login() {
         var firstname= document.getElementById("firstname").value;
         var lastname = document.getElementById("lastname").value;
@@ -88,6 +105,27 @@
             x.type = "password";
         }
     }
+
+    $(document).ready(function() {
+
+        var data = {};
+        $("#browsers option").each(function(i,el) {
+            data[$(el).data("value")] = $(el).val();
+        });
+// `data` : object of `data-value` : `value`
+        console.log(data, $("#browsers option").val());
+
+
+        $('#submit').click(function()
+        {
+            var value = $('#selected').val();
+            var value2=$('#browsers [value="' + value + '"]').data('value');
+            alert(value2);
+        });
+    });
+    //Recuperer la date du jour pour le formulaire intervention
+    var d = new Date();
+    document.getElementById("date").valueAsDate=d;
 </script>
 
 </body>

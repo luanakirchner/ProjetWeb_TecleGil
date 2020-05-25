@@ -141,9 +141,52 @@ function Client(){
 function AdmStatusEnCours(){
     require 'View/AdmStatusEnCours.php';
 }
-function NouvelleIntervention(){
-    require 'View/Intervention.php';
+
+
+function NouvelleIntervention($intervention){
+    if(empty($intervention)) {
+        $Customers = SelectCustomers();
+        $OS = SelectMaxIdIntervention();
+        require 'View/Intervention.php';
+    }
+    else{
+
+        //Verifier si la couleur existe déjà
+        $ResultColor = SelectColorWhereNom($intervention["couleur"]);
+        //Si existe = recuperer l'id
+        if(count($ResultColor)==1){
+            $idColor= $ResultColor[0]["id"];
+        }
+        //Si existe pas = l'inserer
+        else{
+            $idColor = InsertColor($intervention["couleur"]);
+        }
+
+        //Inserer les données dans la table equipement
+        $idEquipement = InsertEquipement($intervention["equipement"],$intervention["driver"],$intervention["caracteristique"],$intervention["passwordPC"],$idColor);
+
+        if($intervention["status"] == "En file d'attente"){$idStatus = 1;}
+        if($intervention["status"] == "En cours"){$idStatus = 2;}
+        if($intervention["status"] == "Prêt"){$idStatus = 3;}
+
+        //Inserer l'intervention
+        $Result = InsertIntervention($intervention["OS"],$intervention,$idEquipement,$intervention["idClient"],$idStatus);
+        if($Result){
+            $_GET["MessageConfirm"] = "<div class='alert alert-success'>Les données ont été bien enregister dans la base de données</div>";
+        }
+        else{
+            $_GET["MessageConfirm"] = "<div class='alert alert-danger'>Un erreur a été produit</div>";
+        }
+
+        $Customers = SelectCustomers();
+        $OS = SelectMaxIdIntervention();
+        $_GET['action'] = "NouvelleIntervention";
+        require 'View/Intervention.php';
+
+    }
 }
+
+
 function AjouterClient($Client){
 
     if(empty($Client)) {
@@ -165,5 +208,13 @@ function AjouterClient($Client){
         }
 
         $confirm = InsertCustomers($Client,$hashPassword,$idLocality);
+        if($confirm){
+            $_GET["MessageConfirm"] = "<div class='alert alert-success'>Le client a été ajouté à la base de données</div>";
+        }
+        else{
+            $_GET["MessageConfirm"] = "<div class='alert alert-danger'>Un erreur se produit</div>";
+        }
+        $_GET['action'] = "AjouterClient";
+        require 'View/AjouterClient.php';
     }
 }
