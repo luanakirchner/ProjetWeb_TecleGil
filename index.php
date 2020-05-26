@@ -36,8 +36,18 @@ if(isset($_GET['action'])){
         case 'AjouterClient':
             AjouterClient($_POST);
             break;
+        case 'TousLesClients':
+            TousLesClients();
+            break;
+        case 'DetailClient':
+            DetailClient($_GET);
+            break;
+        case 'UpdateCustomer':
+            UpdateCustomer($_POST);
+            break;
         default:
             home();
+
     }
 }
 else{

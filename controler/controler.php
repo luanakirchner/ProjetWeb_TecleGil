@@ -218,3 +218,45 @@ function AjouterClient($Client){
         require 'View/AjouterClient.php';
     }
 }
+
+function TousLesClients(){
+    $resultatClients = SelectCustomers();
+    require 'View/TousLesClients.php';
+
+}
+function DetailClient($idClient){
+
+    $infoClient = SelectCustomersWhereId($idClient["idClient"]);
+    $infoInterventions=SelectInterventionsnWhereIdCustomer($idClient["idClient"]);
+    require 'View/DetailClient.php';
+}
+function UpdateCustomer($client){
+
+    if(empty($client)){
+
+    }
+    else {
+        //Verifier si la localite existe deja
+        $ResultLocality = SelectLocalitie($client["city"]);
+        //Si existe = recuperer l'id
+        if (count($ResultLocality) == 1) {
+            $idLocality = $ResultLocality[0]["id"];
+        } //Si existe pas = l'inserer
+        else {
+            $idLocality = InsertLocalities($client["city"], $client["npa"]);
+        }
+
+        $confirm = UpdateCoustomer($client["idClient"], $client["firstname"], $client["lastname"], $client["telephone"], $client["email"], $client["login"], $client["street"], $idLocality);
+
+        if($confirm){
+            $_GET["MessageConfirm"] = "<div class='alert alert-success'>Le client a été ajouté à la base de données</div>";
+        }
+        else{
+            $_GET["MessageConfirm"] = "<div class='alert alert-danger'>Un erreur se produit</div>";
+        }
+        $infoClient = SelectCustomersWhereId($client["idClient"]);
+        $infoInterventions=SelectInterventionsnWhereIdCustomer($client["idClient"]);
+        require 'View/DetailClient.php';
+    }
+
+}

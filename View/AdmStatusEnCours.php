@@ -14,7 +14,7 @@ ob_start();
           <div class="col-md-2" style="border-right: yellow 1px solid;">
               <div class="btn AdmCmd" type="button" >En attend</div>
               <div class="btn AdmCmd" type="button"><a class="texta" href="index.php?action=NouvelleIntervention">Ajouter une nouvelle intervention</a></div>
-              <div class="btn AdmCmd" type="button">Tous les client</div>
+              <div class="btn AdmCmd" type="button"><a class="texta" href="index.php?action=TousLesClients">Tous les client</a></div>
               <div class="btn AdmCmd" type="button"><a class="texta" href="index.php?action=AjouterClient">Ajouter un client</a></div>
           </div>
           <div class="col-md-10">

@@ -141,6 +141,10 @@ footer{
     margin-right: 15px;
     margin-top: 15px;
 }
+.TousLesClients{
+    max-height: 900px;
+    overflow: auto;
+}
 /*---------------Media screnn --------------------------------*/
 @media screen and (max-width: 1027px) {
 
