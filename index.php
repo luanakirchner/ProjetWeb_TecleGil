@@ -45,6 +45,9 @@ if(isset($_GET['action'])){
         case 'UpdateCustomer':
             UpdateCustomer($_POST);
             break;
+        case 'UpdateIntervention':
+            UpdateIntervention($_POST);
+            break;
         default:
             home();
 

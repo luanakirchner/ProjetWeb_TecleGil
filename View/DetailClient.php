@@ -21,13 +21,14 @@ ob_start();
         <div class="col-md-10 formulaireAjouteClient" style="color: white; height: auto" >
            <h3 class="text-center" style="margin-bottom: 60px">Intervention</h3>
             <?php foreach ($infoInterventions as $Strintervention): $_GET[@$Strintervention["status"]] = "selected" ?>
-            <form style="margin-left: 10px;margin-bottom: 60px" method="post" action="index.php?action=NouvelleIntervention">
+            <form style="margin-left: 10px;margin-bottom: 60px" method="post" action="index.php?action=UpdateIntervention">
                 <div class="form-group row">
                     <div class="col-md-6 ligneCenter ">
-                        <input id="idClient" name="idEquipment" value=""<?=@$Strintervention["idEquipment"]?>" type="hidden">
-                        <input id="idClient" name="idIntervention value=""<?=@$Strintervention["idIntervention"]?>" type="hidden">
+                        <input id="idClient" name="idEquipment" value="<?=@$Strintervention["idEquipment"]?>" type="hidden">
+                        <input id="idClient" name="idIntervention" value="<?=@$Strintervention["idIntervention"]?>" type="hidden">
+                        <input id="idClient" name="idDuClient" value="<?=@$_GET["idDuClient"]?>">
                         <div class="ligneLabel"><label for="OS">OS</label></div>
-                        <div class="ligneInput"><input class="formIntervention"  disabled="disabled"  type="text" name="OS" value="<?=@$Strintervention["id"]?>" style="width: 100%; color: white"  ></div>
+                        <div class="ligneInput"><input class="formIntervention"  disabled="disabled"  type="text" name="OS" value="<?=@$Strintervention["idIntervention"]?>" style="width: 100%; color: white"  ></div>
                     </div>
                     <div class="col-md-6 ligneCenter" >
                         <div class="ligneLabel"><label for="date">Date</label></div>

@@ -180,9 +180,9 @@ function UpdateEquiment($idEquipment, $driver,$characteristics,$password,$idColo
     $queryResult = executeQueryIDU($Result);
     return $queryResult;
 }
-function UpdateIntervention($idIntervention,$accessories,$descAdm,$descCustomer,$problem,$service,$idStatus,$date){
+function UpdateInterventionWhereIntervention($idIntervention,$accessories,$descAdm,$descCustomer,$problem,$service,$idStatus,$date){
     $sep = '\'';
-    $Result='UPDATE `interventions` SET `accessories`='.$sep.addslashes($accessories).$sep.', `descriptionCustomer`='.$sep.addslashes($descCustomer).$sep.',`descriptionAdm`='.$sep.addslashes($descAdm).$sep.',`problem`='.$sep.addslashes($problem).$sep.',`service`='.$sep.addslashes($service).$sep.', `lastUpdate`='.$sep.$date.$sep.',`Status_id`='.$sep.$idStatus.$sep.',WHERE id='.$sep.$idIntervention.$sep.'; ';
+    $Result='UPDATE `interventions` SET `accessories`='.$sep.addslashes($accessories).$sep.', `descriptionCustomer`='.$sep.addslashes($descCustomer).$sep.',`descriptionAdm`='.$sep.addslashes($descAdm).$sep.',`problem`='.$sep.addslashes($problem).$sep.',`service`='.$sep.addslashes($service).$sep.', `lastUpdate`='.$sep.$date.$sep.',`Status_id`='.$sep.$idStatus.$sep.' WHERE id='.$sep.$idIntervention.$sep.'; ';
     require_once  'model/dbconnection.php';
     $queryResult = executeQueryIDU($Result);
     return $queryResult;

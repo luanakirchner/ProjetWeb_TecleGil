@@ -227,13 +227,14 @@ function TousLesClients(){
 function DetailClient($idClient){
 
     $infoClient = SelectCustomersWhereId($idClient["idClient"]);
+    $_GET["idDuClient"] = $idClient["idClient"];
     $infoInterventions=SelectInterventionsnWhereIdCustomer($idClient["idClient"]);
     require 'View/DetailClient.php';
 }
 function UpdateCustomer($client){
 
     if(empty($client)){
-
+        require 'View/Home.php';
     }
     else {
         //Verifier si la localite existe deja
@@ -255,8 +256,48 @@ function UpdateCustomer($client){
             $_GET["MessageConfirm"] = "<div class='alert alert-danger'>Un erreur se produit</div>";
         }
         $infoClient = SelectCustomersWhereId($client["idClient"]);
+        $_GET["idDuClient"] = $client["idDuClient"];
         $infoInterventions=SelectInterventionsnWhereIdCustomer($client["idClient"]);
         require 'View/DetailClient.php';
     }
 
+}
+
+function UpdateIntervention($intervention){
+
+    if(empty($intervention)){
+        require 'View/Home.php';
+    }
+    else{
+        //Verifier si la couleur existe déjà
+        $ResultColor = SelectColorWhereNom($intervention["couleur"]);
+        //Si existe = recuperer l'id
+        if(count($ResultColor)==1){
+            $idColor= $ResultColor[0]["id"];
+        }
+        //Si existe pas = l'inserer
+        else{
+            $idColor = InsertColor($intervention["couleur"]);
+        }
+        if($intervention["status"] == "En file d'attente"){$idStatus = 1;}
+        if($intervention["status"] == "En cours"){$idStatus = 2;}
+        if($intervention["status"] == "Prêt"){$idStatus = 3;}
+
+        UpdateEquiment($intervention["idEquipment"],$intervention["driver"],$intervention["caracteristique"],$intervention["passwordPC"],$idColor);
+
+        $today = date("Y-m-d");
+
+        $confirm = UpdateInterventionWhereIntervention($intervention["idIntervention"],$intervention["accessoires"],$intervention["descriptionAdm"],$intervention["descriptionClient"],$intervention["probleme"],$intervention["service"],$idStatus,$today);
+        if($confirm){
+            $_GET["MessageConfirm"] = "<div class='alert alert-success'>Le client a été ajouté à la base de données</div>";
+        }
+        else{
+            $_GET["MessageConfirm"] = "<div class='alert alert-danger'>Un erreur se produit</div>";
+        }
+
+        $infoClient = SelectCustomersWhereId($intervention["idDuClient"]);
+        $_GET["idDuClient"] = $intervention["idDuClient"];
+        $infoInterventions=SelectInterventionsnWhereIdCustomer($intervention["idDuClient"]);
+        require 'View/DetailClient.php';
+    }
 }
