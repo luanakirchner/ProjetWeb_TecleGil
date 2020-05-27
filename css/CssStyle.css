@@ -61,8 +61,6 @@ footer{
     background-color: #262626;
     padding: 40px 40px 0 40px;
     border-radius: 4px;
-    transform: translate(-50%, -50%);
-    position: absolute;
     top: 50%;
     left: 50%;
     color: #fff;
@@ -78,9 +76,15 @@ footer{
     margin-bottom: 10px;
 }
 .ClientDark{
-    height: 1000px;
+    padding-top: 75px;
+    padding-bottom: 40px;
+    background-position: center;
     background-size: cover;
-    position: relative;
+    background-repeat: no-repeat;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    min-height: 1000px;
 }
 .ClientMiseAJour{
     display: flex;
@@ -144,6 +148,9 @@ footer{
 .TousLesClients{
     max-height: 900px;
     overflow: auto;
+}
+input[type="checkbox"]:after{
+    box-shadow: none !important;
 }
 /*---------------Media screnn --------------------------------*/
 @media screen and (max-width: 1027px) {

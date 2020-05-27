@@ -10,6 +10,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>TecleGil</title>
+
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan+Script">
@@ -20,6 +21,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="css/Login-Form-Dark.css">
     <link rel="stylesheet" href="css/CssStyle.css">
+
 </head>
 
 <body id="page-top">
@@ -32,7 +34,12 @@
                 <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="index.php?action=QuiSommesNous">Qui sommes nous</a></li>
                 <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="index.php?action=NousServices">Nous services</a></li>
                 <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="index.php?action=Contact">Contact</a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="index.php?action=Login">Login</a></li>
+                <?php if(@$_SESSION["admin"]): ?>
+                <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="index.php?action=AdmStatusEnCours">Adm</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="index.php?action=Logout">Logout</a></li>
+                <?php else: ?>
+                    <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="index.php?action=Login">Login</a></li>
+                <?php endif; ?>
             </ul>
         </div>
     </div>
@@ -81,6 +88,7 @@
         }
     }
     function Login() {
+
         var firstname= document.getElementById("firstname").value;
         var lastname = document.getElementById("lastname").value;
 
@@ -92,8 +100,53 @@
             lastname = lastname.substring(lastname.indexOf(" "),0);
         }
 
+
         if(firstname != "" && lastname !=""){
-            document.getElementById("loginName").value = firstname + lastname;
+
+            var Logins = new Array();
+            var compter = 0;
+
+            var LoginClient =  firstname + lastname;
+
+            //Recuperer la list de tous les logins
+            <?php $Logins= SelectLogin(); foreach ($Logins as $login): ?>
+                Logins.push("<?php echo $login['login'];?>");
+            <?php endforeach; ?>
+
+            //Recuperer la longuer du login actuelle
+            var longuerDuNom = LoginClient.length;
+            //Tableau pour tous les numeros aprés le nom du login
+            var numeroLogin = new Array();
+            var loginExiste = false;
+
+           for(var i=0; i<Logins.length; i++){
+
+               //Si il existe un login avec le meme nom
+                if(Logins[i].includes(LoginClient)){
+                    //Recuperer la valeur du login existant
+                    var longuer= Logins[i].length;
+                    //Add la diference (le numero) dans le tableau
+                    numeroLogin[compter] = Logins[i].substring(longuerDuNom);
+                    compter++;
+                    loginExiste = true;
+                }
+           }
+
+           var max = 0;
+           for(var e = 0; e<numeroLogin.length; e++){
+               //Recuperer le max, le dernier numero
+               if(numeroLogin[e]>max){
+                   max = numeroLogin[e];
+               }
+           }
+
+           if(loginExiste){
+               //Add le login avec un numero plus grand qui le procedent
+                max = parseInt(max) + parseInt("1")
+               LoginClient = LoginClient+max;
+           }
+
+            document.getElementById("loginName").value = LoginClient;
             document.getElementById("loginPassword").value = firstname;
         }
     }

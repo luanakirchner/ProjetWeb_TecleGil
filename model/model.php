@@ -19,6 +19,15 @@ function IsLoginCorrectCustomers($login,$password){
         return $result;
     }
 }
+function SelectCustomersWhereLogin($login){
+    $result = false;
+    $strSeparator = '\'';
+    require_once  'model/dbconnection.php';
+
+    $loginQuery = 'SELECT * FROM customers WHERE login ='.$strSeparator.$login.$strSeparator.';';
+    $queryResult = executeQuerySelect($loginQuery);
+    return $queryResult;
+}
 
 function IsLoginCorrectAdmin($login,$password){
     $result = false;
@@ -41,7 +50,7 @@ function IsLoginCorrectAdmin($login,$password){
 }
 
 function CreateSession($login, $admin){
-    $_SESSION['$login'] = $login;
+    $_SESSION['login'] = $login;
     $_SESSION['admin'] = $admin;
 }
 
@@ -159,7 +168,7 @@ function SelectCustomersWhereId($id){
 function SelectInterventionsnWhereIdCustomer($idClient){
 
     $strSeparator = '\'';
-    $Result='SELECt status.status, interventions.id as idIntervention, interventions.accessories, interventions.descriptionCustomer, interventions.descriptionAdm, interventions.problem, interventions.service, interventions.arrivalDate, equipments.equipment,equipments.id as idEquipment, equipments.driver, equipments.id as idEquipement,  equipments.characteristics, equipments.password, colors.color FROM `interventions` INNER JOIN status on interventions.Status_id = status.id INNER JOIN equipments on interventions.Equipments_id= equipments.id Left JOIN colors on equipments.Colors_id = colors.id WHERE interventions.Customers_id = '.$strSeparator.$idClient.$strSeparator.' AND status.id != 3  ';
+    $Result='SELECt status.status, interventions.id as idIntervention, interventions.accessories, interventions.descriptionCustomer, interventions.descriptionAdm, interventions.problem, interventions.service, interventions.arrivalDate, equipments.equipment,equipments.id as idEquipment, equipments.driver, equipments.id as idEquipement,  equipments.characteristics, equipments.password, colors.color FROM `interventions` INNER JOIN status on interventions.Status_id = status.id INNER JOIN equipments on interventions.Equipments_id= equipments.id Left JOIN colors on equipments.Colors_id = colors.id WHERE interventions.Customers_id = '.$strSeparator.$idClient.$strSeparator.' ; ';
     require_once  'model/dbconnection.php';
     $queryResult = executeQuerySelect($Result);
     return $queryResult;
@@ -185,5 +194,25 @@ function UpdateInterventionWhereIntervention($idIntervention,$accessories,$descA
     $Result='UPDATE `interventions` SET `accessories`='.$sep.addslashes($accessories).$sep.', `descriptionCustomer`='.$sep.addslashes($descCustomer).$sep.',`descriptionAdm`='.$sep.addslashes($descAdm).$sep.',`problem`='.$sep.addslashes($problem).$sep.',`service`='.$sep.addslashes($service).$sep.', `lastUpdate`='.$sep.$date.$sep.',`Status_id`='.$sep.$idStatus.$sep.' WHERE id='.$sep.$idIntervention.$sep.'; ';
     require_once  'model/dbconnection.php';
     $queryResult = executeQueryIDU($Result);
+    return $queryResult;
+}
+
+function SelectInterventionWhereClient($idClient){
+    $strSeparator = '\'';
+    $Result = 'SELECT equipments.equipment, interventions.descriptionCustomer, interventions.lastUpdate, status.status From interventions INNER JOIN equipments on interventions.Equipments_id = equipments.id INNER JOIN status on interventions.Status_id = status.id Where interventions.Customers_id ='.$strSeparator.$idClient.$strSeparator.';';
+    require_once  'model/dbconnection.php';
+    $queryResult = executeQuerySelect($Result);
+    return $queryResult;
+}
+function SelectInterventionEnCours(){
+    $Result = 'SELECT status.status, interventions.id as idIntervention,interventions.arrivalDate, interventions.problem, customers.firstname,customers.lastname, customers.id as idCustomer FROM `interventions` INNER JOIN customers on interventions.Customers_id = customers.id INNER JOIN status on interventions.Status_id = status.id WHERE status.id != 3;';
+    require_once  'model/dbconnection.php';
+    $queryResult = executeQuerySelect($Result);
+    return $queryResult;
+}
+function SelectLogin(){
+    $Result = 'SELECT `login`FROM `customers` ';
+    require_once  'model/dbconnection.php';
+    $queryResult = executeQuerySelect($Result);
     return $queryResult;
 }

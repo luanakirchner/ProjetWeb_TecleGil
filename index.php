@@ -34,7 +34,7 @@ if(isset($_GET['action'])){
             NouvelleIntervention($_POST);
             break;
         case 'AjouterClient':
-            AjouterClient($_POST);
+            AjouterClient();
             break;
         case 'TousLesClients':
             TousLesClients();
@@ -47,6 +47,12 @@ if(isset($_GET['action'])){
             break;
         case 'UpdateIntervention':
             UpdateIntervention($_POST);
+            break;
+        case 'Logout':
+            Logout($_POST);
+            break;
+        case 'AjouterClientForm':
+            AjouterClientForm($_POST);
             break;
         default:
             home();
