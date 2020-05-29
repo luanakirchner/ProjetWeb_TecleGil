@@ -54,7 +54,7 @@ ob_start();
                                 <?php endforeach; ?>
                             </datalist>
                             <input id="submit" type="submit">
-                            <input id="idClient" name="idClient" type="hidden">
+                            <input id="idClient" name="idClient" >
                         </div>
                     </div>
                 </div>

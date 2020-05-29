@@ -49,10 +49,13 @@ if(isset($_GET['action'])){
             UpdateIntervention($_POST);
             break;
         case 'Logout':
-            Logout($_POST);
+            Logout();
             break;
         case 'AjouterClientForm':
             AjouterClientForm($_POST);
+            break;
+        case 'EmailClientAdm':
+            EmailClientAdm($_POST);
             break;
         default:
             home();

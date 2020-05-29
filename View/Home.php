@@ -5,15 +5,17 @@
  */
 ob_start();
 ?>
-<header class="shadow-lg masthead" style="background-image: url(&quot;img/test2.png&quot;); margin-top: 50px">
-    <div class="container">
-        <div class="intro-text">
+
+<header  class="shadow-lg masthead" style="background-image: url(&quot;img/test2.png&quot;); margin-top: 50px">
+    <div id="particles-js" class="">
+        <div  class="intro-text" style="position: absolute; left: 0%; right: 0%">
             <div class="intro-lead-in" style="margin: auto"><span>Bienvenue chez</span></div>
             <div class="intro-heading text-uppercase"><span>TecleGil</span></div>
             <a class="nav-link js-scroll-trigger" href="#Accueil"> <i class="la la-arrow-circle-o-down" style="font-size: 49px;color: rgb(255,245,0);"></i></a>
         </div>
     </div>
 </header>
+
 <section id="Accueil" style="color: rgb(73,84,95);background-color: #f5f5f5;">
     <div class="container">
         <div class="row">

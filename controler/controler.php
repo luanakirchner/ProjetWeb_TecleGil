@@ -135,11 +135,14 @@ function Login($login){
     }
 
 }
-function Client($name){
+function Client($login){
 
-    $Client = SelectCustomersWhereLogin($name);
+    $Client = SelectCustomersWhereLogin($login);
     $infoIntervention = SelectInterventionWhereClient($Client[0]["id"]);
     $_GET["Nom"] = $Client[0]["firstname"];
+    $_GET["id"] = $Client[0]["id"];
+    $_GET["email"] = $Client[0]["email"];
+    $_GET["login"] = $login;
     require 'View/Client.php';
 }
 function AdmStatusEnCours(){
@@ -237,14 +240,52 @@ function AjouterClientForm($Client){
 
             $confirm = InsertCustomers($Client, $hashPassword, $idLocality);
             if ($confirm) {
-                $_GET["MessageConfirm"] = "<div class='alert alert-success'>Le client a été ajouté à la base de données</div>";
 
+                $messageEmail = "L'email avec le login n'as pas peut etrê envoyé au client";
+                //Si la case pour envoyer le login a été coché
                 if(isset($Client["EnvoyerLeLogin"])){
-                    if($Client["email"]){
-                        //envoyer l'email
+                    if($Client["email"]!="") {
+                        try {
+
+
+                            ini_set('display_errors', 1);
+                            error_reporting(E_ALL);
+
+                            $to = $Client["email"];
+
+                            $subject = "Votre login chez TecleGil";
+                            $message = "<HTML><BODY>";
+                            $message .= "Bonjour" . $Client['firstname'] . "<br/>";
+                            $message .= "Voice votre login:<br/>";
+                            $message .= "Login:" . $Client["login"] . "<br/>";
+                            $message .= "Mot de passe:" . $Client["password"] . "<br/>";
+                            $message .= "Vous pouvez se connecter dans notre site pour savoir l'état de votre matériel<br/>";
+                            $message .= "<a href = 'http://infoshop.mycpnv.ch/' >TecleGil.com</a><br/><br/>";
+                            $message .= "Merci pour votre confiance<br/>";
+                            $message .= "</BODY></HTML>";
+
+                            $headers = "From: \"TecleGil\"<luana.kirchner-bannwart@infoshop.mycpnv.ch>\n";
+                            $headers .= "Reply-To: luana.kirchner-bannwart@infoshop.mycpnv.ch\n";
+                            $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
+
+                            if(mail($to, $subject, $message, $headers)) {
+                                $messageEmail = "Le login a été envoyé";
+                            } else {
+                                $messageEmail = "Un erreur se produit pour envoyer le login au client";
+                            }
+                        }catch (Exception $e){
+
+                        }
+                    }
+                    else{
+                        $messageEmail = "L'email avec le login n'as pas peut etrê envoyé au client";
                     }
                 }
-            } else {
+
+                $_GET["MessageConfirm"] = "<div class='alert alert-success'>Le client a été ajouté à la base de données. ".$messageEmail."</div>";
+
+            }
+            else {
                 $_GET["MessageConfirm"] = "<div class='alert alert-danger'>Un erreur se produit</div>";
             }
 
@@ -364,4 +405,36 @@ function Logout(){
     session_destroy();
     $_GET['action'] = "home";
     require 'View/Home.php';
+}
+function EmailClientAdm($infos){
+
+    $login = $infos["login"];
+    try {
+
+        ini_set('display_errors', 1);
+        error_reporting(E_ALL);
+
+        $to = "luanabannwart@gmail.com";
+        $client =  $infos["email"];
+
+        $subject = "Votre login chez TecleGil";
+        $message = "<HTML><BODY>";
+        $message .= "Vous avez un message de " . $infos['nom'] . "<br/><br/>";
+        $message .= $infos["messageDuClient"] . "<br/><br/>";
+        $message .= "OS:" . $infos["os"] . "<br/>";
+        $message .= "</BODY></HTML>";
+
+        $headers = "From: \"TecleGil\"$client\n";
+        $headers .= "Reply-To: $client\n";
+        $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
+
+        if (mail($to, $subject, $message, $headers)) {
+            $_GET['EmailMessage'] = "<div class='alert alert-success'>Votre email a été envoyer</div>";
+        } else {
+            $_GET['EmailMessage'] = "<div class='alert alert-danger'>Un erreur se produit</div>";
+        }
+    }catch (Exception $e){
+        $_GET['EmailMessage'] = "<div class='alert alert-danger'>Un erreur se produit</div>";
+    }
+    Client($login);
 }

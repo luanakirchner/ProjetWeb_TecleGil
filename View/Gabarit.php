@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>TecleGil</title>
 
+    <link rel="stylesheet" media="screen" href="css/style.css">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan+Script">
@@ -101,7 +102,7 @@
         }
 
 
-        if(firstname != "" && lastname !=""){
+        if(firstname !== "" && lastname !==""){
 
             var Logins = new Array();
             var compter = 0;
@@ -180,6 +181,9 @@
     var d = new Date();
     document.getElementById("date").valueAsDate=d;
 </script>
-
+<!-- stats.js -->
+<script src="js/particles.js"></script>
+<script src="js/app.js"></script>
+<script src="js/lib/stats.js"></script>
 </body>
 </html>
