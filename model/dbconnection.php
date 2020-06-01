@@ -13,9 +13,9 @@ function openDBConnexion (){
     $hostname = '127.0.0.1';
     $port = 3306;
     $charset = 'utf8';
-    $dbName = 'kirchner_tecgil';
-    $userName = 'kirchner_tecgil';
-    $userPwd = 'Lulu223612!';
+    $dbName = 'teclegil';
+    $userName = 'root';
+    $userPwd = '';
     $dsn = $sqlDriver . ':host=' . $hostname . ';dbname=' . $dbName . ';port=' . $port . ';charset=' . $charset;
 
     try{

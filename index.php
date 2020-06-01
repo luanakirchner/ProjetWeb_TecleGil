@@ -57,6 +57,9 @@ if(isset($_GET['action'])){
         case 'EmailClientAdm':
             EmailClientAdm($_POST);
             break;
+        case 'NousServicesAdm':
+            NousServicesAdm($_POST);
+            break;
         default:
             home();
 

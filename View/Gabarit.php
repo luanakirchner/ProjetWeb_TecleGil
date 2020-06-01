@@ -33,10 +33,14 @@
             <ul class="nav navbar-nav ml-auto text-uppercase">
                 <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="index.php?action=home">Accueil</a></li>
                 <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="index.php?action=QuiSommesNous">Qui sommes nous</a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="index.php?action=NousServices">Nous services</a></li>
+                <?php if(@$_SESSION["admin"]): ?>
+                    <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="index.php?action=NousServicesAdm">NousServicesAdm</a></li>
+                <?php else: ?>
+                    <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="index.php?action=NousServices">Nous services</a></li>
+                <?php endif; ?>
                 <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="index.php?action=Contact">Contact</a></li>
                 <?php if(@$_SESSION["admin"]): ?>
-                <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="index.php?action=AdmStatusEnCours">Adm</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="index.php?action=AdmStatusEnCours">Adm</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="index.php?action=Logout">Logout</a></li>
                 <?php else: ?>
                     <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="index.php?action=Login">Login</a></li>

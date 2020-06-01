@@ -168,7 +168,7 @@ function SelectCustomersWhereId($id){
 function SelectInterventionsnWhereIdCustomer($idClient){
 
     $strSeparator = '\'';
-    $Result='SELECt Status.status, Interventions.id as IdIntervention, Interventions.accessories, Interventions.descriptionCustomer, Interventions.descriptionAdm, Interventions.problem, Interventions.service, Interventions.arrivalDate, Equipments.equipment,Equipments.id as idEquipment, Equipments.driver, Equipments.id as idEquipement,  Equipments.characteristics, Equipments.password, Colors.color FROM `Interventions` INNER JOIN Status on Interventions.Status_id = Status.id INNER JOIN Equipments on Interventions.Equipments_id= Equipments.id Left JOIN Colors on Equipments.Colors_id = Colors.id WHERE Interventions.Customers_id = '.$strSeparator.$idClient.$strSeparator.' ; ';
+    $Result='SELECt Status.status, Interventions.id as idIntervention, Interventions.accessories, Interventions.descriptionCustomer, Interventions.descriptionAdm, Interventions.problem, Interventions.service, Interventions.arrivalDate, Equipments.equipment,Equipments.id as idEquipment, Equipments.driver, Equipments.id as idEquipement,  Equipments.characteristics, Equipments.password, Colors.color FROM `Interventions` INNER JOIN Status on Interventions.Status_id = Status.id INNER JOIN Equipments on Interventions.Equipments_id= Equipments.id Left JOIN Colors on Equipments.Colors_id = Colors.id WHERE Interventions.Customers_id = '.$strSeparator.$idClient.$strSeparator.' ; ';
     require_once  'model/dbconnection.php';
     $queryResult = executeQuerySelect($Result);
     return $queryResult;
@@ -222,5 +222,21 @@ function SelecHistoriqueInterventionsWhereCustomers($idClient){
     $Result = 'SELECT Interventions.id, Interventions.arrivalDate, Interventions.dateOfDeparture, Interventions.problem FROM Interventions WHERE Interventions.Customers_id ='.$strSeparator.$idClient.$strSeparator.' AND Interventions.Status_id = 3;';
     require_once  'model/dbconnection.php';
     $queryResult = executeQuerySelect($Result);
+    return $queryResult;
+}
+
+function SelectNousServices(){
+    $strSeparator = '\'';
+    $Result = 'SELECT * FROM Services';
+    require_once  'model/dbconnection.php';
+    $queryResult = executeQuerySelect($Result);
+    return $queryResult;
+}
+
+function UpadateServices($id,$title,$photo,$description){
+    $sep = '\'';
+    $Result='UPDATE `Services` SET `description`='.$sep.$description.$sep.',`picture`='.$sep.$photo.$sep.',`title`='.$sep.$title.$sep.',`Companies_id`=1 WHERE `id`='.$sep.$id.$sep.';';
+    require_once  'model/dbconnection.php';
+    $queryResult = executeQueryIDU($Result);
     return $queryResult;
 }

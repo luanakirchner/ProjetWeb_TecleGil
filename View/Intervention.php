@@ -53,8 +53,7 @@ ob_start();
                                 <option data-value="<?=$result['id'] ?>" value="<?=$result['firstname']." ".$result['lastname'] ?>" ></option>
                                 <?php endforeach; ?>
                             </datalist>
-                            <input id="submit" type="submit">
-                            <input id="idClient" name="idClient" >
+                            <input id="idClient" name="idClient" type="hidden" >
                         </div>
                     </div>
                 </div>

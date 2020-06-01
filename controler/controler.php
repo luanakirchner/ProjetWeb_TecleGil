@@ -9,9 +9,44 @@ function home(){
     require 'View/Home.php';
 }
 function NousServices(){
+    $infoNousServices = SelectNousServices();
     require 'View/NousServices.php';
 }
+function NousServicesAdm($service){
+    if(@$_SESSION["admin"]) {
+        if (empty($service)) {
+            $infoNousServices = SelectNousServices();
+            require 'View/NousServicesAdm.php';
+        }
+        else{
+            //Si un image a été selectionnée
+            if($_FILES['addPhoto']['name'] != ""){
+                //Recuperer le nom de l'image
+                $nameImage = $_FILES['addPhoto']['name'];
+                //Transferer l'image dans le dossier image
+                if(move_uploaded_file($_FILES['addPhoto']['tmp_name'], "img/$nameImage")){
+                    $service['Photo'] = "img/$nameImage";
+                }
+                else{
+                    $_GET["Erreur"] ="<div class='alert alert-danger'>Problème avec la photo</div>";
+                }
+            }
 
+            $result = UpadateServices($service["idService"],$service["title"],$service["Photo"],$service["description"]);
+            if($result){
+                $_GET["MessageConfirm"] = "<div class='alert alert-success'>Les données ont été bien enregister dans la base de données</div>";
+            }
+            else{
+                $_GET["MessageConfirm"] = "<div class='alert alert-danger'>Un problème est arrivé</div>";
+            }
+            $infoNousServices = SelectNousServices();
+            require 'View/NousServicesAdm.php';
+        }
+    }
+    else{
+        require 'View/Home.php';
+    }
+}
 /*
 -- Function send email and show the contact page
 */
@@ -226,7 +261,7 @@ function AjouterClientForm($Client){
             require 'View/AjouterClient.php';
         } else {
 
-            $hashPassword = md5($Client["password"]);
+            $hashPassword= password_hash($Client["password"], PASSWORD_DEFAULT);
 
             //Verifier si la localite existe deja
             $ResultLocality = SelectLocalitie($Client["city"]);

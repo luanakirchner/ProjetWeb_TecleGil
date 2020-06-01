@@ -36,8 +36,9 @@ ob_start();
                     <div class="form-group" style="display: flex"><button class="btn btn-dark btn-md FormulaireContact"  type="submit">Envoyer</button></div>
                 </form>
             </div>
+            <?=@$_GET['EmailMessage']?>
         </div>
-        <?=@$_GET['EmailMessage']?>
+
     </div>
 <?php
 $contenu = ob_get_clean();
