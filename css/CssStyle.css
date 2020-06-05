@@ -9,7 +9,10 @@ header{
 footer{
     background-color: #A6A6A6;
 }
-
+#ImageLogo{
+    width: 200px;
+    height: 75px;
+}
 .PageContenu{
     background-color: #262626;
 }
@@ -170,11 +173,13 @@ input[type="checkbox"]:after{
 
 }
 /*---------------Media screnn --------------------------------*/
+
+
 @media screen and (max-width: 1027px) {
 
     .formulaireAjouteClient{
         padding-right: 15px;
-        padding-left: 70px;
+        padding-left: 50px;
     }
 
 }
@@ -183,6 +188,10 @@ input[type="checkbox"]:after{
 
     .mediaMargin{
         margin-bottom: 15px;
+    }
+    #ImageLogo{
+        width: 90px;
+        height: 50px;
     }
 
 }

@@ -67,7 +67,7 @@ function InsertCustomers($Client,$password,$idLocality){
 function InsertLocalities($locality,$npa){
 
     $strSeparator = '\'';
-    $Result = 'INSERT INTO `Localities`(`city`, `npa`) VALUES  ('.$strSeparator.$locality.$strSeparator.','.$strSeparator.$npa.$strSeparator.');';
+    $Result = 'INSERT INTO `Localities`(`city`, `npa`) VALUES  ('.$strSeparator.addslashes($locality).$strSeparator.','.$strSeparator.$npa.$strSeparator.');';
 
     require_once  'model/dbconnection.php';
     $queryResult = executeQueryIDU($Result);
@@ -175,9 +175,9 @@ function SelectInterventionsnWhereIdCustomer($idClient){
 
 }
 
-function UpdateCoustomer($idClient,$firstname,$lastname,$telephone,$email,$login,$street,$idLocality){
+function UpdateCoustomer($idClient,$firstname,$lastname,$telephone,$email,$login,$street,$password,$idLocality){
     $sep = '\'';
-    $Result='UPDATE `Customers` SET `firstname`='.$sep.addslashes($firstname).$sep.',`lastname`='.$sep.addslashes($lastname).$sep.',`telephone`='.$sep.$telephone.$sep.',`street`='.$sep.addslashes($street).$sep.',`email`='.$sep.$email.$sep.',`login`='.$sep.addslashes($login).$sep.',`Localities_id`='.$sep.$idLocality.$sep.' WHERE `id`='.$sep.$idClient.$sep.';';
+    $Result='UPDATE `Customers` SET `firstname`='.$sep.addslashes($firstname).$sep.',`lastname`='.$sep.addslashes($lastname).$sep.',`telephone`='.$sep.$telephone.$sep.',`street`='.$sep.addslashes($street).$sep.',`email`='.$sep.$email.$sep.',`login`='.$sep.addslashes($login).$sep.',`Localities_id`='.$sep.$idLocality.$sep.',`password`='.$sep.$password.$sep.' WHERE `id`='.$sep.$idClient.$sep.';';
     require_once  'model/dbconnection.php';
     $queryResult = executeQueryIDU($Result);
     return $queryResult;
@@ -236,6 +236,13 @@ function SelectNousServices(){
 function UpadateServices($id,$title,$photo,$description){
     $sep = '\'';
     $Result='UPDATE `Services` SET `description`='.$sep.$description.$sep.',`picture`='.$sep.$photo.$sep.',`title`='.$sep.$title.$sep.',`Companies_id`=1 WHERE `id`='.$sep.$id.$sep.';';
+    require_once  'model/dbconnection.php';
+    $queryResult = executeQueryIDU($Result);
+    return $queryResult;
+}
+function StatusPret($idIntervention,$date){
+    $sep = '\'';
+    $Result='UPDATE `Interventions` SET `dateOfDeparture`='.$sep.$date.$sep.' WHERE id='.$sep.$idIntervention.$sep.'; ';
     require_once  'model/dbconnection.php';
     $queryResult = executeQueryIDU($Result);
     return $queryResult;

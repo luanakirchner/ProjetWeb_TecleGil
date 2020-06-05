@@ -47,7 +47,7 @@ ob_start();
                     <div class="col-md-6 ligneCenter ">
                         <div class="ligneLabel"><label for="client">Client*</label></div>
                         <div class="ligneInput">
-                            <input id="selected" class="formIntervention" list="browsers" onchange="VerifiClient()" name="listClient">
+                            <input id="selected" class="formIntervention" list="browsers" onchange="VerifiClient()" name="listClient" style="width: 100%">
                             <datalist id="browsers" >
                                 <?php foreach ($Customers as $result): ?>
                                 <option data-value="<?=$result['id'] ?>" value="<?=$result['firstname']." ".$result['lastname'] ?>" ></option>

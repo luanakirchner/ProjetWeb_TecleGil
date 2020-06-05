@@ -19,6 +19,7 @@ ob_start();
             <div class="btn AdmCmd" type="button"><a class="texta" href="index.php?action=AjouterClient">Ajouter un client</a></div>
         </div>
         <div class="col-md-10 formulaireAjouteClient" style="color: white; height: auto" >
+            <?= @$_GET["MessageConfirm"]?>
             <h3 class="text-center" style="margin-bottom: 60px">Intervention</h3>
             <?php foreach ($infoInterventions as $Strintervention): $_GET[@$Strintervention["status"]] = "selected";
                 if(@$Strintervention["status"] != "Prêt"):?>
@@ -33,7 +34,7 @@ ob_start();
                             </div>
                             <div class="col-md-6 ligneCenter" >
                                 <div class="ligneLabel"><label for="date">Date</label></div>
-                                <div class="ligneInput"><input class="formIntervention" id="date" type="Date" value="<?=@$Strintervention["arrivalDate"]?>"  disabled="disabled" name="date" style="width: 100%;color: white" ></div>
+                                <div class="ligneInput"><input class="formIntervention" id="date" type="text" value=" <?=date('d-m-Y',strtotime(@$Strintervention["arrivalDate"]))?>"  disabled="disabled" name="date" style="width: 100%;color: white" ></div>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -157,10 +158,6 @@ ob_start();
                             <div class="ligneLabel"> <label for="telephone">telephone*:</label></div>
                             <div class="ligneInput"> <input class="formIntervention" type="text" required=""  value="<?=@$client["telephone"]?>"  name="telephone" style="width: 100%" > </div>
                         </div>
-                        <div class="col-md-6 ligneCenter">
-                            <div class="ligneLabel"><label for="telephone2">telephone2:</label></div>
-                            <div class="ligneInput"> <input class="formIntervention" type="text" name="telephone2"  style="width: 100%" ></div>
-                        </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-md-6 ligneCenter">
@@ -191,11 +188,13 @@ ob_start();
                         </div>
                         <div class="col-md-3 ligneCenter">
                             <div class="ligneLabel"><label for="">Mot de passe</label></div>
-                            <div class="ligneInput"> <input id="loginPassword" class="formIntervention" type="password" name="password" style="width: 100%" ></div>
+                            <div class="ligneInput"> <input id="loginPassword" class="formIntervention" type="password" value="<?=@$client["firstname"]?>" name="password" style="width: 100%" ></div>
+                            <img style="margin-left: 20px" src="img/vision.png" onclick="ShowPassword()">
                         </div>
                         <div class="col-md-3 ligneCenter">
-                            <img style="margin-right: 20px" src="img/vision.png" onclick="ShowPassword()">
-                            <div class="btn AdmCmd" style="margin-bottom: 0px">Envoyer le login</div>
+
+                            <input type="checkbox" id="EnvoyerLeLogin" name="EnvoyerLeLogin" style="width: 30px; height: 20px">
+                            <label style="margin-left: 10px" for="EnvoyerLeLogin">Envoyer le login par email, si l'email existe</label><br>
                         </div>
                     </div>
                     <div class="form-group" style="display: block">

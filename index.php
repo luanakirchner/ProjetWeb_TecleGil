@@ -25,7 +25,7 @@ if(isset($_GET['action'])){
             Login($_POST);
             break;
         case 'Client':
-            Client();
+            Client($_POST);
             break;
         case 'AdmStatusEnCours':
             AdmStatusEnCours();
@@ -59,6 +59,9 @@ if(isset($_GET['action'])){
             break;
         case 'NousServicesAdm':
             NousServicesAdm($_POST);
+            break;
+        case 'MotDePasseOblie':
+            MotDePasseOblie($_POST);
             break;
         default:
             home();

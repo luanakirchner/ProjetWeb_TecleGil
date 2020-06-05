@@ -17,14 +17,14 @@ ob_start();
               <div class="btn AdmCmd" type="button"><a class="texta" href="index.php?action=TousLesClients">Tous les client</a></div>
               <div class="btn AdmCmd" type="button"><a class="texta" href="index.php?action=AjouterClient">Ajouter un client</a></div>
           </div>
-          <div class="col-md-10">
+          <div class="col-md-10" style="overflow: scroll">
               <table class="table" style="text-align: center">
                   <thead>
                   <tr style="color: white">
                       <th>OS</th>
                       <th>Status</th>
                       <th>Client</th>
-                      <th>Probleme</th>
+                      <th class="CellProbleme">Probleme</th>
                       <th>Date d'arriver</th>
                   </tr>
                   </thead>
@@ -34,8 +34,8 @@ ob_start();
                           <td><a class="texta" href="index.php?action=DetailClient&idClient=<?=$info["idCustomer"]?>"><?=$info["idIntervention"] ?></a></td>
                           <td><?=$info["status"] ?></td>
                           <td><a class="texta" href="index.php?action=DetailClient&idClient=<?=$info["idCustomer"]?>"><?=$info["firstname"] ?> <?=$info["lastname"] ?></a></td>
-                          <td><?=$info["problem"] ?></td>
-                          <td><?=$info["arrivalDate"] ?></td>
+                          <td class="CellProbleme"><?=$info["problem"] ?></td>
+                          <td><?=date('d-m-Y',strtotime(@$info["arrivalDate"])) ?></td>
                       </tr>
                       </tbody>
                       <?php $count++; endforeach ?>

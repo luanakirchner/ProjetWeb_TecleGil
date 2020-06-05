@@ -5,13 +5,25 @@
  */
 require 'model/model.php';
 
+/*
+ * Afficher la page Home du site
+*/
 function home(){
     require 'View/Home.php';
 }
+
+/*
+ * Afficher la page Nous services du site
+*/
 function NousServices(){
     $infoNousServices = SelectNousServices();
     require 'View/NousServices.php';
 }
+
+/*
+ * Afficher la page Nous services Adm du site
+ * Modifier les informations de la page
+*/
 function NousServicesAdm($service){
     if(@$_SESSION["admin"]) {
         if (empty($service)) {
@@ -47,8 +59,10 @@ function NousServicesAdm($service){
         require 'View/Home.php';
     }
 }
+
 /*
--- Function send email and show the contact page
+ * Afficher la page Contact du site
+ * Envoyer l'email au administrateur
 */
 function Contact($infoContact){
 
@@ -95,6 +109,10 @@ function Contact($infoContact){
         }
     }
 }
+
+/*
+ * Function captcha pour la page contact du site
+*/
 function Captcha(){
 
     function post_captcha($user_response) {
@@ -127,9 +145,18 @@ function Captcha(){
         throw  new  Exception("<div class='alert alert-danger'>Essayer plus tard</div>");
     }
 }
+
+/*
+ * Afficher la page Qui Sommes nous
+*/
 function QuiSommesNous(){
     require 'View/QuiSommesNous.php';
 }
+
+/*
+ * Afficher la page Login
+ * Se connecter au site
+*/
 function Login($login){
 
     if(!empty($login["user"])&& !empty($login["password"])){
@@ -170,6 +197,10 @@ function Login($login){
     }
 
 }
+
+/*
+ * Afficher la page Client du site aprés sa connection
+*/
 function Client($login){
 
     $Client = SelectCustomersWhereLogin($login);
@@ -180,6 +211,10 @@ function Client($login){
     $_GET["login"] = $login;
     require 'View/Client.php';
 }
+
+/*
+ * Afficher la page administrateur avec les de l'intervention status en cours
+*/
 function AdmStatusEnCours(){
 
     if(@$_SESSION["admin"]) {
@@ -190,7 +225,10 @@ function AdmStatusEnCours(){
     }
 }
 
-
+/*
+ * Afficher la page Nouvelle intervention
+ * Ajouter un intervention dans la base de données
+*/
 function NouvelleIntervention($intervention){
 
     if(@$_SESSION["admin"]) {
@@ -243,7 +281,9 @@ function NouvelleIntervention($intervention){
     }
 }
 
-
+/*
+ * Afficher la page Ajouter un client
+*/
 function AjouterClient(){
 
     if(@$_SESSION["admin"]) {
@@ -254,6 +294,10 @@ function AjouterClient(){
     }
 
 }
+
+/*
+ * Ajouter un client dans la base de données
+*/
 function AjouterClientForm($Client){
 
     if(@$_SESSION["admin"]) {
@@ -276,7 +320,7 @@ function AjouterClientForm($Client){
             $confirm = InsertCustomers($Client, $hashPassword, $idLocality);
             if ($confirm) {
 
-                $messageEmail = "L'email avec le login n'as pas peut etrê envoyé au client";
+                $messageEmail = "";
                 //Si la case pour envoyer le login a été coché
                 if(isset($Client["EnvoyerLeLogin"])){
                     if($Client["email"]!="") {
@@ -309,7 +353,7 @@ function AjouterClientForm($Client){
                                 $messageEmail = "Un erreur se produit pour envoyer le login au client";
                             }
                         }catch (Exception $e){
-
+                            echo $e->getMessage();
                         }
                     }
                     else{
@@ -333,6 +377,9 @@ function AjouterClientForm($Client){
     }
 }
 
+/*
+ * Afficher la page avec tous les clients existant dans la base de données
+*/
 function TousLesClients(){
     if(@$_SESSION["admin"]) {
         $resultatClients = SelectCustomers();
@@ -343,6 +390,10 @@ function TousLesClients(){
     }
 
 }
+
+/*
+ * Afficher la page avec tous les information du client selectionée
+*/
 function DetailClient($idClient){
     if(@$_SESSION["admin"]) {
         $infoClient = SelectCustomersWhereId($idClient["idClient"]);
@@ -354,6 +405,10 @@ function DetailClient($idClient){
         require 'View/Home.php';
     }
 }
+
+/*
+ * Changer les informations du client
+*/
 function UpdateCustomer($client){
     if(@$_SESSION["admin"]) {
         if (empty($client)) {
@@ -368,11 +423,50 @@ function UpdateCustomer($client){
             else {
                 $idLocality = InsertLocalities($client["city"], $client["npa"]);
             }
-
-            $confirm = UpdateCoustomer($client["idClient"], $client["firstname"], $client["lastname"], $client["telephone"], $client["email"], $client["login"], $client["street"], $idLocality);
+            $hashPassword= password_hash($client["password"], PASSWORD_DEFAULT);
+            $confirm = UpdateCoustomer($client["idClient"], $client["firstname"], $client["lastname"], $client["telephone"], $client["email"], $client["login"], $client["street"],$hashPassword, $idLocality);
 
             if ($confirm) {
-                $_GET["MessageConfirm"] = "<div class='alert alert-success'>Le client a été ajouté à la base de données</div>";
+                $messageEmail ="";
+                //Si la case pour envoyer le login a été coché
+                if(isset($client["EnvoyerLeLogin"])){
+                    if($client["email"]!="") {
+                        try {
+
+                            ini_set('display_errors', 1);
+                            error_reporting(E_ALL);
+
+                            $to = $client["email"];
+
+                            $subject = "Votre login chez TecleGil";
+                            $message = "<HTML><BODY>";
+                            $message .= "Bonjour" . $client['firstname'] . "<br/>";
+                            $message .= "Voice votre login:<br/>";
+                            $message .= "Login:" . $client["login"] . "<br/>";
+                            $message .= "Mot de passe:" . $client["password"] . "<br/>";
+                            $message .= "Vous pouvez se connecter dans notre site pour savoir l'état de votre matériel<br/>";
+                            $message .= "<a href = 'http://infoshop.mycpnv.ch/' >TecleGil.com</a><br/><br/>";
+                            $message .= "Merci pour votre confiance<br/>";
+                            $message .= "</BODY></HTML>";
+
+                            $headers = "From: \"TecleGil\"<luana.kirchner-bannwart@infoshop.mycpnv.ch>\n";
+                            $headers .= "Reply-To: luana.kirchner-bannwart@infoshop.mycpnv.ch\n";
+                            $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
+
+                            if(mail($to, $subject, $message, $headers)) {
+                                $messageEmail = "Le login a été envoyé";
+                            } else {
+                                $messageEmail = "Un erreur se produit pour envoyer le login au client";
+                            }
+                        }catch (Exception $e){
+                            $messageEmail = "Un erreur se produit pour envoyer le login au client";
+                        }
+                    }
+                    else{
+                        $messageEmail = "L'email avec le login n'as pas peut etrê envoyé au client";
+                    }
+                }
+                $_GET["MessageConfirm"] = "<div class='alert alert-success'>Le client a été modifié à la base de données. ".$messageEmail."</div>";
             } else {
                 $_GET["MessageConfirm"] = "<div class='alert alert-danger'>Un erreur se produit</div>";
             }
@@ -388,6 +482,9 @@ function UpdateCustomer($client){
 
 }
 
+/*
+ * Afficher les information de une intervention
+*/
 function UpdateIntervention($intervention){
 
     if(@$_SESSION["admin"]) {
@@ -403,6 +500,7 @@ function UpdateIntervention($intervention){
             else {
                 $idColor = InsertColor($intervention["couleur"]);
             }
+            /*---Recuperer le id du status--*/
             if ($intervention["status"] == "En file d'attente") {
                 $idStatus = 1;
             }
@@ -419,7 +517,12 @@ function UpdateIntervention($intervention){
 
             $confirm = UpdateInterventionWhereIntervention($intervention["idIntervention"], $intervention["accessoires"], $intervention["descriptionAdm"], $intervention["descriptionClient"], $intervention["probleme"], $intervention["service"], $idStatus, $today);
             if ($confirm) {
-                $_GET["MessageConfirm"] = "<div class='alert alert-success'>Le client a été ajouté à la base de données</div>";
+                //Si l'intervention est prêt
+                if($idStatus==3){
+                    StatusPret($intervention["idIntervention"],$today);
+                    //Envoyer l'email
+                }
+                $_GET["MessageConfirm"] = "<div class='alert alert-success'>La modification a été fait</div>";
             } else {
                 $_GET["MessageConfirm"] = "<div class='alert alert-danger'>Un erreur se produit</div>";
             }
@@ -435,12 +538,19 @@ function UpdateIntervention($intervention){
     }
 }
 
+/*
+ * Se déconnecter du site
+*/
 function Logout(){
     $_SESSION = array();
     session_destroy();
     $_GET['action'] = "home";
     require 'View/Home.php';
 }
+
+/*
+ * Envoyer un email au administrateur du site à partir de la page client
+*/
 function EmailClientAdm($infos){
 
     $login = $infos["login"];
@@ -472,4 +582,40 @@ function EmailClientAdm($infos){
         $_GET['EmailMessage'] = "<div class='alert alert-danger'>Un erreur se produit</div>";
     }
     Client($login);
+}
+
+/*
+ * Envoyer un email au administrateur du site pour soliciter un nouveau mot de passe
+*/
+function MotDePasseOblie($infos){
+
+    if(empty($infos)){
+        require "View/MotDePasseOblie.php";
+    }
+    else{
+        try {
+            $to = "luanabannwart@gmail.com";
+            $nom = $infos["nom"];
+            $prenom = $infos["prenom"];
+
+            $subject = "Mot de passe oblie";
+            $message = "<HTML><BODY>";
+            $message .= "Vous avez une demande de recuperation de mot de passe, de la part de: " .$nom." ".$prenom."<br/><br/>";
+            $message .= "</BODY></HTML>";
+
+            $headers = "From: \"TecleGil\"<luana.kirchner-bannwart@infoshop.mycpnv.ch>\n";
+            $headers .= "Reply-To: luana.kirchner-bannwart@infoshop.mycpnv.ch\n";
+            $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
+
+            if (mail($to, $subject, $message, $headers)) {
+                $_GET['MessageConfirm'] = "<div class='alert alert-success'>Votre demande a été envoyer</div>";
+            } else {
+                $_GET['MessageConfirm'] = "<div class='alert alert-danger'>Un erreur se produit</div>";
+            }
+        }
+        catch (Exception $e){
+            $_GET['MessageConfirm'] = "<div class='alert alert-danger'>Un erreur se produit</div>";
+         }
+        require "View/MotDePasseOblie.php";
+    }
 }
