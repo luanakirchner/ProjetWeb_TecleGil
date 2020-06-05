@@ -13,10 +13,10 @@ ob_start();
     </div>
     <div class="row MenuAdm"  style="min-height: 700px">
         <div class="col-md-2" style="border-right: yellow 1px solid;">
-            <div class="btn AdmCmd" type="button" ><a class="texta" href="index.php?action=AdmStatusEnCours">En attend</a></div>
-            <div class="btn AdmCmd" type="button"><a class="texta" href="index.php?action=NouvelleIntervention">Ajouter une nouvelle intervention</a></div>
-            <div class="btn AdmCmd" type="button"><a class="texta" href="index.php?action=TousLesClients">Tous les client</a></div>
-            <div class="btn AdmCmd" type="button"><a class="texta" href="index.php?action=AjouterClient">Ajouter un client</a></div>
+            <a class="texta" href="index.php?action=AdmStatusEnCours"><div class="btn AdmCmd" type="button" >En attente - En cours</div></a>
+            <a class="texta" href="index.php?action=NouvelleIntervention"><div class="btn AdmCmd" type="button">Ajouter une nouvelle intervention</div></a>
+            <a class="texta" href="index.php?action=TousLesClients"><div class="btn AdmCmd" type="button">Tous les client</div></a>
+            <a class="texta" href="index.php?action=AjouterClient"><div class="btn AdmCmd" type="button">Ajouter un client</div></a>
         </div>
         <div class="col-md-10 formulaireAjouteClient" style="color: white; height: auto" >
             <?= @$_GET["MessageConfirm"]?>
@@ -39,7 +39,7 @@ ob_start();
                         </div>
                         <div class="form-group row">
                             <div class="col-md-6 ligneCenter ">
-                                <div class="ligneLabel"> <label for="status">Status*</label></div>
+                                <div class="ligneLabel"> <label for="status">Statut*</label></div>
                                 <div class="ligneInput">
                                     <select required="" name="status" id="status" class="formIntervention" style="width: 100%">
                                         <option value=""></option>
@@ -54,7 +54,7 @@ ob_start();
                             <div class="col-md-6 ligneCenter ">
                                 <div class="ligneLabel"><label for="nomClient">Client*</label></div>
                                 <div class="ligneInput">
-                                    <input class="formIntervention" type="text" name="nomClient" value="<?=@$Strintervention[""]?>"  disabled="disabled" style="width:  100%;color: white">
+                                    <input class="formIntervention" type="text" name="nomClient" value="<?=@$infoClient[0]["firstname"]." ".@$infoClient[0]["lastname"]?>"  disabled="disabled" style="width:  100%;color: white">
                                 </div>
                             </div>
                         </div>
@@ -72,13 +72,13 @@ ob_start();
                                 <div class="ligneInput"><input class="formIntervention" type="text" value="<?=@$Strintervention["color"]?>"  name="couleur" style="width: 100%"></div>
                             </div>
                             <div class="col-md-6 ligneCenter" >
-                                <div class="ligneLabel"><label for="accessoires">accessoires</label></div>
+                                <div class="ligneLabel"><label for="accessoires">Accessoires</label></div>
                                 <div class="ligneInput"><input class="formIntervention" id="acc" type="text" value="<?=@$Strintervention["accessories"]?>"  name="accessoires" style="width: 100%" ></div>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-md-6 ligneCenter" >
-                                <div class="ligneLabel"> <label for="caracteristique">caracteristique</label></div>
+                                <div class="ligneLabel"> <label for="caracteristique">Caractéristique(s)</label></div>
                                 <div class="ligneInput"> <input class="formIntervention" type="text" value="<?=@$Strintervention["characteristics"]?>"  name="caracteristique" style="width: 100%" ></div>
                             </div>
                             <div class="col-md-6 ligneCenter" >
@@ -88,12 +88,12 @@ ob_start();
                         </div>
                         <div class="form-group row">
                             <div class="col-md-6 ligneCenter" >
-                                <div class="ligneLabel"> <label for="driver">driver</label></div>
+                                <div class="ligneLabel"> <label for="driver">Driver</label></div>
                                 <div class="ligneInput"> <input class="formIntervention" type="text" value="<?=@$Strintervention["driver"]?>"  name="driver" style="width: 100%" ></div>
                             </div>
                         </div>
                         <div class="form-group " style="display: block">
-                            <label for="descriptionClient">Description adm</label>
+                            <label for="descriptionClient">Description administrateur (privé)</label>
                             <textarea class="formIntervention" type="text" name="descriptionAdm" style="width: 100%" > <?=@$Strintervention["descriptionAdm"]?></textarea>
                         </div>
                         <div class="form-group" style="display: block">
@@ -101,11 +101,11 @@ ob_start();
                             <textarea class="formIntervention" type="text" name="descriptionClient"  style="width: 100%" ><?=@$Strintervention["descriptionCustomer"]?></textarea>
                         </div>
                         <div class="form-group" style="display: block">
-                            <label for="probleme">probleme</label>
+                            <label for="probleme">Probleme</label>
                             <textarea class="formIntervention" type="text" name="probleme" style="width: 100%" > <?=@$Strintervention["problem"]?></textarea>
                         </div>
                         <div class="form-group" style="display: block">
-                            <label for="service">service</label>
+                            <label for="service">Service(s)</label>
                             <textarea class="formIntervention" type="text" name="service"  style="width: 100%" ><?=@$Strintervention["service"]?></textarea>
                         </div>
                         <div class="form-group" style="display: block">
@@ -144,18 +144,18 @@ ob_start();
                 <form style="margin-left: 10px" action='index.php?action=UpdateCustomer' method="post">
                     <div class="form-group row">
                         <div class="col-md-6 ligneCenter ">
-                            <div class="ligneLabel"><label  for="firstname" style="margin-right: 15px" >Prénom*:</label></div>
+                            <div class="ligneLabel"><label  for="firstname" style="margin-right: 15px" >Prénom*</label></div>
                             <div class="ligneInput"> <input id="firstname" class="formIntervention" type="text" required="" value="<?=@$client["firstname"]?>" name="firstname" style="width: 100%" ></div>
                         </div>
                         <div class="col-md-6 ligneCenter" >
-                            <div class="ligneLabel"><label for="lastname">Nom*:</label></div>
+                            <div class="ligneLabel"><label for="lastname">Nom*</label></div>
                             <div class="ligneInput"> <input id="lastname" class="formIntervention" type="text" required=""  value="<?=@$client["lastname"]?>" name="lastname" style="width: 100%"></div>
                             <input id="idClient" name="idClient" value="<?=@$client["id"]?>" type="hidden">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-md-6 ligneCenter">
-                            <div class="ligneLabel"> <label for="telephone">telephone*:</label></div>
+                            <div class="ligneLabel"> <label for="telephone">Téléphone*</label></div>
                             <div class="ligneInput"> <input class="formIntervention" type="text" required=""  value="<?=@$client["telephone"]?>"  name="telephone" style="width: 100%" > </div>
                         </div>
                     </div>
@@ -165,7 +165,7 @@ ob_start();
                             <div class="ligneInput"><input class="formIntervention" required="" type="text" value="<?=@$client["city"]?>"  name="city" style="width: 100%" > </div>
                         </div>
                         <div class="col-md-6 ligneCenter">
-                            <div class="ligneLabel"><label for="npa">Npa</label></div>
+                            <div class="ligneLabel"><label for="npa">NPA</label></div>
                             <div class="ligneInput"><input class="formIntervention" type="text" value="<?=@$client["npa"]?>" name="npa" style="width: 50%" ></div>
                         </div>
                     </div>

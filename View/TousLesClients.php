@@ -12,10 +12,10 @@ ob_start();
         </div>
         <div class="row MenuAdm" style="min-height: 700px">
             <div class="col-md-2" style="border-right: yellow 1px solid;">
-                <div class="btn AdmCmd" type="button" ><a class="texta" href="index.php?action=AdmStatusEnCours">En attend</a></div>
-                <div class="btn AdmCmd" type="button"><a class="texta" href="index.php?action=NouvelleIntervention">Ajouter une nouvelle intervention</a></div>
-                <div class="btn AdmCmd" type="button"><a class="texta" href="index.php?action=TousLesClients">Tous les client</a></div>
-                <div class="btn AdmCmd" type="button"><a class="texta" href="index.php?action=AjouterClient">Ajouter un client</a></div>
+                <a class="texta" href="index.php?action=AdmStatusEnCours"><div class="btn AdmCmd" type="button" >En attente - En cours</div></a>
+                <a class="texta" href="index.php?action=NouvelleIntervention"><div class="btn AdmCmd" type="button">Ajouter une nouvelle intervention</div></a>
+                <a class="texta" href="index.php?action=TousLesClients"><div class="btn AdmCmd" type="button">Tous les client</div></a>
+                <a class="texta" href="index.php?action=AjouterClient"><div class="btn AdmCmd" type="button">Ajouter un client</div></a>
             </div>
             <div class="col-md-10 TousLesClients">
                 <table class="table" style="text-align: center">

@@ -32,11 +32,11 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="nav navbar-nav ml-auto text-uppercase">
                 <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="index.php?action=home">Accueil</a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="index.php?action=QuiSommesNous">Qui sommes nous</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="index.php?action=QuiSommesNous">Qui sommes-nous</a></li>
                 <?php if(@$_SESSION["admin"]): ?>
-                    <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="index.php?action=NousServicesAdm">NousServicesAdm</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="index.php?action=NousServicesAdm">Nos Services Adm</a></li>
                 <?php else: ?>
-                    <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="index.php?action=NousServices">Nous services</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="index.php?action=NousServices">Nos services</a></li>
                 <?php endif; ?>
                 <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="index.php?action=Contact">Contact</a></li>
                 <?php if(@$_SESSION["admin"]): ?>
@@ -53,7 +53,7 @@
 <footer>
     <div class="container">
         <div class="row">
-            <div class="col-md-4">Luana Kirchner Bannwart<br> 2020<br><a href="">@LuanaKirchner</a></span></div>
+            <div class="col-md-4">Luana Kirchner Bannwart<br> 2020<br>luana.kirchnerbannwart@gmail.com</span></div>
             <div class="col-md-4">
                 <ul class="list-inline social-buttons">
                     <li class="list-inline-item"><a href="#" ><i class="fa fa-facebook" style="margin-top: 10px"></i></a></li>

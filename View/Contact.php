@@ -45,11 +45,11 @@ ob_start();
                 <p class="text-muted">+55 81 30110378<br>
                     99688-4905
                 </p>
-                <h3 class="text-center" style="margin-top: 35px" >Ouverture</h3>
-                <p class="text-muted" style="margin-top: 25px"><span style="color: white"> Lundi à vendredi:</span><br>
-                    8hr à 17hr<br>
+                <h3 class="text-center" style="margin-top: 35px" >Horaires</h3>
+                <p class="text-muted" style="margin-top: 25px"><span style="color: white"> Lundi au vendredi:</span><br>
+                    8h à 17h<br>
                     <span style="color: white"> Samedi:</span><br>
-                    8hr à 12hr
+                    8h à 12h
                 </p>
             </div>
         </div>

@@ -8,7 +8,7 @@ ob_start();
 <div class="PageContenu">
     <div class="MarginTop"></div>
     <div class="col-lg-12 text-center" style="margin-bottom: 70px;">
-        <h1 class="text-uppercase section-heading" style="color: white">Nous Services</h1>
+        <h1 class="text-uppercase section-heading" style="color: white">Nos Services</h1>
     </div>
     <?php foreach ($infoNousServices as $info): ?>
         <div>

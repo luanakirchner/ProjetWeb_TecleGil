@@ -12,26 +12,26 @@ ob_start();
     </div>
     <div class="row MenuAdm"  style="min-height: 500px">
         <div class="col-md-2" style="border-right: yellow 1px solid;">
-            <div class="btn AdmCmd" type="button" ><a class="texta" href="index.php?action=AdmStatusEnCours">En attend</a></div>
-            <div class="btn AdmCmd" type="button"><a class="texta" href="index.php?action=NouvelleIntervention">Ajouter une nouvelle intervention</a></div>
-            <div class="btn AdmCmd" type="button"><a class="texta" href="index.php?action=TousLesClients">Tous les client</a></div>
-            <div class="btn AdmCmd" type="button"><a class="texta" href="index.php?action=AjouterClient">Ajouter un client</a></div>
+            <a class="texta" href="index.php?action=AdmStatusEnCours"><div class="btn AdmCmd" type="button" >En attente - En cours</div></a>
+            <a class="texta" href="index.php?action=NouvelleIntervention"><div class="btn AdmCmd" type="button">Ajouter une nouvelle intervention</div></a>
+            <a class="texta" href="index.php?action=TousLesClients"><div class="btn AdmCmd" type="button">Tous les client</div></a>
+            <a class="texta" href="index.php?action=AjouterClient"><div class="btn AdmCmd" type="button">Ajouter un client</div></a>
         </div>
         <div class="col-md-10 formulaireAjouteClient" >
             <form style="margin-left: 10px" action='index.php?action=AjouterClientForm' method="post">
                 <div class="form-group row">
                     <div class="col-md-6 ligneCenter ">
-                        <div class="ligneLabel"><label  for="firstname" style="margin-right: 15px">Prénom*:</label></div>
+                        <div class="ligneLabel"><label  for="firstname" style="margin-right: 15px">Prénom*</label></div>
                         <div class="ligneInput"> <input id="firstname" class="formIntervention" type="text" required="" name="firstname"style="width: 100%" onchange="Login()"></div>
                     </div>
                     <div class="col-md-6 ligneCenter" >
-                        <div class="ligneLabel"><label for="lastname">Nom*:</label></div>
+                        <div class="ligneLabel"><label for="lastname">Nom*</label></div>
                         <div class="ligneInput"> <input id="lastname" class="formIntervention" type="text" required=""  name="lastname" style="width: 100%" onchange="Login()"></div>
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-md-6 ligneCenter">
-                        <div class="ligneLabel"> <label for="telephone">telephone*:</label></div>
+                        <div class="ligneLabel"> <label for="telephone">Téléphone*</label></div>
                         <div class="ligneInput"> <input class="formIntervention" type="text" required=""  name="telephone" style="width: 100%" > </div>
                     </div>
 
@@ -42,7 +42,7 @@ ob_start();
                         <div class="ligneInput"><input class="formIntervention" required="" type="text" name="city" style="width: 100%" > </div>
                     </div>
                     <div class="col-md-6 ligneCenter">
-                        <div class="ligneLabel"><label for="npa">Npa</label></div>
+                        <div class="ligneLabel"><label for="npa">NPA</label></div>
                         <div class="ligneInput"><input class="formIntervention" type="text" name="npa" style="width: 50%" ></div>
                     </div>
                 </div>
