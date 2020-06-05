@@ -13,7 +13,7 @@ function home(){
 }
 
 /*
- * Afficher la page Nous services du site
+ * Afficher la page Nos services du site
 */
 function NousServices(){
     $infoNousServices = SelectNousServices();
